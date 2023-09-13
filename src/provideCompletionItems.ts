@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import pDebounce from "p-debounce";
 import {
   AutocompleteResult,
   MarkdownStringSpec,
@@ -14,8 +15,13 @@ import tabnineExtensionProperties from "./globals/tabnineExtensionProperties";
 import runCompletion from "./runCompletion";
 import { COMPLETION_IMPORTS } from "./selectionHandler";
 import { escapeTabStopSign } from "./utils/utils";
+import { logOutput } from "./outputChannels";
+
 
 const INCOMPLETE = true;
+const DEBOUNCE_DELAY = 1000;
+
+const debounceCompletions = pDebounce(runCompletion, DEBOUNCE_DELAY);
 
 export default async function provideCompletionItems(
   document: vscode.TextDocument,
@@ -33,12 +39,14 @@ async function completionsListFor(
 ): Promise<vscode.CompletionItem[]> {
   try {
     if (!completionIsAllowed(document, position)) {
+      logOutput(`Completion is not allowed for ${document.fileName}`);
       return [];
     }
 
-    const response = await runCompletion(document, position);
+    const response = await debounceCompletions(document, position);
 
     if (!response || response?.results.length === 0) {
+      logOutput(`No completions for ${document.fileName}`);
       return [];
     }
 

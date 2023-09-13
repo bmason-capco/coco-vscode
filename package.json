@@ -1,36 +1,25 @@
 {
-  "publisher": "HuggingFace",
-  "name": "huggingface-vscode",
-  "version": "0.0.33",
-  "displayName": "HF Code Autocomplete",
-  "description": "AI Autocomplete for OSS code-gen models",
-  "icon": "small_logo.png",
-  "author": "Mishig Davaadorj <mishig@hf.co> (https://hf.co/)",
-  "license": "License at https://github.com/huggingface/huggingface-vscode",
+  "publisher": "Capco CoCo",
+  "name": "capcococo-vscode",
+  "version": "0.0.1",
+  "displayName": "Capco Code Completion",
+  "description": "Autocomplete with Gen AI models",
+  "icon": "capco_logo.png",
+  "author": "Capco CoCo <genai@capco.com> (https://www.capco.com/)",
+  "license": "License at https://github.com/CapcoDigitalEngineering/coco-vscode",
   "galleryBanner": {
-    "color": "#100f11",
+    "color": "#101010",
     "theme": "dark"
   },
-  "badges": [
-    {
-      "url": "https://img.shields.io/github/stars/huggingface/huggingface-vscode?style=social",
-      "description": "Star huggingface-vscode on Github",
-      "href": "https://github.com/huggingface/huggingface-vscode"
-    },
-    {
-      "url": "https://img.shields.io/twitter/follow/huggingface?style=social",
-      "description": "Follow Huggingface on Twitter",
-      "href": "https://twitter.com/huggingface"
-    }
-  ],
-  "homepage": "https://hf.co",
+  "badges": [],
+  "homepage": "https://www.capco.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/huggingface/huggingface-vscode"
+    "url": "https://github.com/CapcoDigitalEngineering/coco-vscode"
   },
   "bugs": {
-    "url": "https://github.com/huggingface/huggingface-vscode/issues",
-    "email": "mishig@hf.co"
+    "url": "https://github.com/CapcoDigitalEngineering/coco-vscode",
+    "email": "genai@capco.com"
   },
   "engines": {
     "vscode": "^1.50.0"
@@ -78,7 +67,8 @@
     "nodejs",
     "node",
     "node.js",
-    "jupyter"
+    "jupyter",
+    "genai"
   ],
   "activationEvents": [
     "*"
@@ -107,7 +97,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
-    "@types/debounce": "^1.2.1",
+    "@types/p-debounce": "^1.0.1",
     "@types/diff": "^5.0.2",
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.2.2",
@@ -155,7 +145,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "debounce": "^1.2.1",
+    "p-debounce": "^1.0.1",
     "diff": "^5.0.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "extract-zip": "^2.0.1",
@@ -175,75 +165,109 @@
   "contributes": {
     "commands": [
       {
-        "command": "HuggingFaceCode::setApiToken",
-        "title": "Hugging Face Code: Set API token"
+        "command": "CapcoCoCo.setApiToken",
+        "title": "Capco CoCo: Set API token"
       },
       {
         "command": "tabnine.attribution",
-        "title": "Hugging Face Code: Show Code Attribution"
+        "title": "Capco CoCo: Show Code Attribution"
       },
       {
-        "command": "HuggingFaceCode::openGithub",
-        "title": "Hugging Face Code: Open project GitHub"
+        "command": "CapcoCoCo.openGithub",
+        "title": "Capco CoCo: Open project GitHub"
+      },
+      {
+        "command": "CapcoCoCo.writeUnitTestsForSelection",
+        "title": "Write unit tests for selection"
+      },
+      {
+        "command": "CapcoCoCo.documentCodeSelection",
+        "title": "Document code from selection"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "CapcoCoCo.writeUnitTestsForSelection",
+          "when": "editorHasSelection",
+          "group": "Capco CoCo"
+        },
+        {
+          "command": "CapcoCoCo.documentCodeSelection",
+          "when": "editorHasSelection",
+          "group": "Capco CoCo"
+        }
+      ]
+    },
     "configuration": [
       {
-        "title": "Hugging Face Code",
+        "title": "CapcoCoCo",
         "properties": {
-          "HuggingFaceCode.configTemplate": {
+          "CapcoCoCo.configTemplate": {
             "type": "string",
-            "enum": ["bigcode/starcoder", "codellama/CodeLlama-13b-hf", "Custom"],
+            "enum": [
+              "bigcode/starcoder",
+              "codellama/CodeLlama-13b-hf",
+              "Custom"
+            ],
             "default": "bigcode/starcoder",
             "description": "Choose an option from the dropdown."
           },
-          "HuggingFaceCode.modelIdOrEndpoint": {
+          "CapcoCoCo.modelIdOrEndpoint": {
             "type": "string",
-            "default": "bigcode/starcoder",
-            "description": "Supply huggingface model id (ex: `bigcode/starcoder`) or custom endpoint (ex: https://bigcode-large-xl.eu.ngrok.io/generate) to which request will be sent to. When huggingface model id is supplied, hugging face API inference will be used."
+            "default": "https://coco.capcodevfx.com/api/v1/completions",
+            "description": "Supply model endpoint (ex: https://coco.capcodevfx.com/api/v1/completions) to which request will be sent."
           },
-          "HuggingFaceCode.isFillMode": {
+          "CapcoCoCo.isFillMode": {
             "type": "boolean",
             "default": true,
             "description": "Whether to send to inference server: codes that are on top of cursor only (isFillMode=false) OR codes that are both above & below the cursor (isFillMode=true)"
           },
-          "HuggingFaceCode.autoregressiveModeTemplate": {
+          "CapcoCoCo.autoregressiveModeTemplate": {
             "type": "string",
             "default": "[prefix]",
             "description": "Token `[prefix]` is replaced by contents of a text file from the beginning to the cursor. Token `[suffix]` is replaced by contents of a text file from the cursor to the end. So you can provide your own format template for ex: `<s>[prefix]</s>`"
           },
-          "HuggingFaceCode.fillModeTemplate": {
+          "CapcoCoCo.fillModeTemplate": {
             "type": "string",
             "default": "<fim_prefix>[prefix]<fim_suffix>[suffix]<fim_middle>",
-            "description":  "Token `[prefix]` is replaced by contents of a text file from the beginning to the cursor. Token `[suffix]` is replaced by contents of a text file from the cursor to the end. So you can provide your own format template for ex: `<start>[prefix]<fill>[suffix]<middle>`"
+            "description": "Token `[prefix]` is replaced by contents of a text file from the beginning to the cursor. Token `[suffix]` is replaced by contents of a text file from the cursor to the end. So you can provide your own format template for ex: `<start>[prefix]<fill>[suffix]<middle>`"
           },
-          "HuggingFaceCode.temperature": {
+          "CapcoCoCo.temperature": {
             "type": "float",
             "default": 0.2,
             "description": "Sampling temperature"
           },
-          "HuggingFaceCode.maxNewTokens": {
+          "CapcoCoCo.maxNewTokens": {
             "type": "integer",
             "default": 60,
             "description": "Max number of new tokens to be generated. The accepted range is [50-500] both ends inclusive. Be warned that the latency of a request will increase with higher number."
           },
-          "HuggingFaceCode.stopTokens": {
+          "CapcoCoCo.stopTokens": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "default": ["<|endoftext|>"],
+            "default": [
+              "<|endoftext|>"
+            ],
             "description": "(Optional) Stop tokens"
           },
-          "HuggingFaceCode.tokensToClear": {
+          "CapcoCoCo.tokensToClear": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "default": ["<fim_middle>"],
+            "default": [
+              "<fim_prefix>",
+              "<fim_middle>",
+              "<fim_suffix>",
+              "[INST]",
+              "[/INST]"
+            ],
             "description": "(Optional) Tokens that should be cleared from the resulting output. For example, in FIM mode, one usually wants to clear FIM token from resulting outout."
           },
-          "HuggingFaceCode.attributionWindowSize": {
+          "CapcoCoCo.attributionWindowSize": {
             "type": "integer",
             "default": 250,
             "description": "Number of characters to scan for code attribution"
@@ -308,9 +332,9 @@
     "*.{ts,js,css,md}": "prettier --write src/"
   },
   "__metadata": {
-    "id": "75da638c-c45a-44ea-aa3b-8570a3559810",
-    "publisherDisplayName": "TabNine",
-    "publisherId": "1924b661-7c19-45d9-9800-edeb32848fd7",
+    "id": "1",
+    "publisherDisplayName": "Capco",
+    "publisherId": "1",
     "isPreReleaseVersion": false
   }
 }

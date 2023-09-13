@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
-import TabnineInlineCompletionItem from "./inlineSuggestions/tabnineInlineCompletionItem";
-import { completionIsAllowed } from "./provideCompletionItems";
-import { getShouldComplete } from "./inlineSuggestions/documentChangesTracker";
-import getInlineCompletionItems from "./getInlineCompletionItems";
+import TabnineInlineCompletionItem from "./tabnineInlineCompletionItem";
+import { completionIsAllowed } from "../provideCompletionItems";
+import { getShouldComplete } from "./documentChangesTracker";
+import getInlineCompletionItems from "../getInlineCompletionItems";
 
 const END_OF_LINE_VALID_REGEX = new RegExp("^\\s*[)}\\]\"'`]*\\s*[:{;,]?\\s*$");
 const DEBOUNCE_DELAY = 300;

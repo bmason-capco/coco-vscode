@@ -1,6 +1,6 @@
 import { commands, Position, Range, SnippetString, TextEditor } from "vscode";
 import { ResultEntry } from "../../binary/requests/requests";
-import { CompletionArguments } from "../../CompletionArguments";
+import { CompletionArguments } from "../../completionArguments";
 import { COMPLETION_IMPORTS } from "../../selectionHandler";
 import { escapeTabStopSign } from "../../utils/utils";
 import clearInlineSuggestionsState from "../clearDecoration";

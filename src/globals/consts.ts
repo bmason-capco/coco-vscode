@@ -2,19 +2,19 @@ export const TABNINE_URL_QUERY_PARAM = "tabnineUrl";
 export const API_VERSION = "4.4.223";
 export const BINARY_UPDATE_URL = "https://update.tabnine.com/bundles";
 export const BINARY_UPDATE_VERSION_FILE_URL = `${BINARY_UPDATE_URL}/version`;
-export const ATTRIBUTION_BRAND = "";
-export const BRAND_NAME = "Hugging Face Code";
+export const ATTRIBUTION_BRAND = "Capco";
+export const BRAND_NAME = "CoCo";
 export const LIMITATION_SYMBOL = "🔒";
-export const FULL_BRAND_REPRESENTATION = ATTRIBUTION_BRAND + BRAND_NAME;
+export const FULL_BRAND_REPRESENTATION = `${ATTRIBUTION_BRAND} ${BRAND_NAME}`;
 export const BUNDLE_DOWNLOAD_FAILURE_MESSAGE =
-  "Tabnine Extension was unable to download its dependencies. Please check your internet connection. If you use a proxy server, please visit https://code.visualstudio.com/docs/setup/network";
-export const OPEN_ISSUE_BUTTON = "Open issue";
+  "Capco CoCo Extension was unable to download its dependencies. Please check your internet connection. If you use a proxy server, please visit https://code.visualstudio.com/docs/setup/network";
+export const OPEN_ISSUE_BUTTON = "Open Issue";
 export const OPEN_NETWORK_SETUP_HELP = "Help";
 export const DOWNLOAD_RETRY = "Retry";
 export const RELOAD_BUTTON = "Reload";
 export const OPEN_ISSUE_LINK =
-  "https://github.com/codota/tabnine-vscode/issues/new";
-export const STATUS_NAME = "Tabnine";
+  "https://github.com/CapcoDigitalEngineering/coco-vscode/issues/new";
+export const STATUS_NAME = "CoCo";
 
 export const INSTRUMENTATION_KEY = "<INSTRUMENTATION_KEY>";
 
@@ -50,7 +50,7 @@ export const STATUS_BAR_FIRST_TIME_CLICKED = "status-bar-first-time-clicked";
 export const OPEN_LP_FROM_STATUS_BAR = "tabnine:open_lp";
 export const INSTALL_COMMAND = "workbench.extensions.installExtension";
 export const LATEST_RELEASE_URL =
-  "https://api.github.com/repos/codota/tabnine-vscode/releases";
+  "https://api.github.com/repos/CapcoDigitalEngineering/coco-vscode/releases/";
 export const MINIMAL_SUPPORTED_VSCODE_API = "1.35.0";
 export const ALPHA_VERSION_KEY = "tabnine.alpha.version";
 export const BETA_CHANNEL_MESSAGE_SHOWN_KEY =
@@ -154,13 +154,13 @@ export const ATTRIBUTION_COMMAND = "tabnine.attribution";
 export const NEXT_INLINE_COMMAND = "tabnine.next-inline-suggestion";
 export const PREV_INLINE_COMMAND = "tabnine.prev-inline-suggestion";
 export const SNIPPET_COMMAND = "tabnine.snippet-suggestion";
-export const PROJECT_OPEN_GITHUB_COMMAND = "HuggingFaceCode::openGithub";
+export const PROJECT_OPEN_GITHUB_COMMAND = "CapcoCoCo.openGithub";
 export const TABNINE_OPEN_GETTING_STARTED_COMMAND =
   "tabnine:open-getting-started";
 export const TABNINE_NOTIFICATIONS_FOCUS_COMMAND =
   "tabnine-notifications.focus";
 
-export const PROJECT_GITHUB_URL = "https://github.com/huggingface/huggingface-vscode";
+export const PROJECT_GITHUB_URL = "https://github.com/CapcoDigitalEngineering/coco-vscode";
 export const TABNINE_SITE_URL = "https://tabnine.com";
 export const TABNINE_GETTING_STARTED_FOR_VSCODE_URL = `${TABNINE_SITE_URL}/getting-started/ide?client=vscode`;
 
@@ -174,4 +174,4 @@ export enum SuggestionTrigger {
   LookAhead = "LookAhead",
 }
 
-export const OUTPUT_CHANNEL_NAME = "Hugging Face Code";
+export const OUTPUT_CHANNEL_NAME = "Capco CoCo";

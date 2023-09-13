@@ -2,8 +2,11 @@ import { window, commands, ExtensionContext, env, Uri } from "vscode";
 import { PROJECT_OPEN_GITHUB_COMMAND, PROJECT_GITHUB_URL } from "./globals/consts";
 import { getTabnineExtensionContext } from "./globals/tabnineExtensionContext";
 
-export const SET_API_TOKEN_COMMAND = "HuggingFaceCode::setApiToken";
+export const SET_API_TOKEN_COMMAND = "CapcoCoCo.setApiToken";
 export const STATUS_BAR_COMMAND = "TabNine.statusBar";
+
+export const CMD_WRITE_UNIT_TESTS = "CapcoCoCo.writeUnitTestsForSelection";
+export const CMD_DOCUMENT_CODE = "CapcoCoCo.documentCodeSelection";
 
 export function registerCommands(
   context: ExtensionContext
@@ -19,6 +22,12 @@ export function registerCommands(
       void env.openExternal(Uri.parse(PROJECT_GITHUB_URL));
     }),
   );
+  context.subscriptions.push(
+    commands.registerCommand(CMD_WRITE_UNIT_TESTS, handleStatusBar())
+  );
+  context.subscriptions.push(
+    commands.registerCommand(CMD_DOCUMENT_CODE, handleStatusBar())
+  );
 }
 
 function handleStatusBar() {
@@ -30,11 +39,11 @@ function handleStatusBar() {
 async function setApiToken () {
   const context = getTabnineExtensionContext();
   const input = await window.showInputBox({
-      prompt: 'Please enter your API token (find yours at hf.co/settings/token):',
+      prompt: 'Please enter your API token (find yours at coco.capcodevfx.com/token):',
       placeHolder: 'Your token goes here ...'
   });
   if (input !== undefined) {
     await context?.secrets.store('apiToken', input);
-    window.showInformationMessage(`Hugging Face Code: API Token was successfully saved`);
+    void window.showInformationMessage(`CapcoCoCo: API Token was successfully saved`);
   }
 };

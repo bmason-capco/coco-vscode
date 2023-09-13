@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-const EXTENSION_SUBSTRING = "huggingface-vscode";
+const EXTENSION_SUBSTRING = "capcococo-vscode";
 const TELEMETRY_CONFIG_ID = "telemetry";
 const TELEMETRY_CONFIG_ENABLED_ID = "enableTelemetry";
 
@@ -152,7 +152,7 @@ function getContext(): TabNineExtensionProperties {
     get codeReviewBaseUrl(): string {
       return (
         configuration.get<string>("tabnine.codeReviewBaseUrl") ??
-        "https://api.tabnine.com/code-review/"
+        "https://coco.capcodevfx.com/api/code-review/"
       );
     },
     get isVscodeInlineAPIEnabled(): boolean | undefined {

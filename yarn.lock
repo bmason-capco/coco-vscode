@@ -274,6 +274,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.7.tgz#1cb61fd0c85cb87e728c43107b5fd82b69bc9ef8"
   integrity sha512-gWL8VUkg8VRaCAUgG9WmhefMqHmMblxe2rVpMF86nZY/+ZysU+BkAp+3cz03AixWDSSz0ks5WX59yAhv/cDwFA==
 
+"@types/p-debounce@^4.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/p-debounce/-/p-debounce-1.0.1.tgz#c9956067a240dffedf2682a24d0712ffa5e3c8fe"
+  integrity sha512-zlAn04fH4cGYPAjmYW8Tst/vxn78IJmD3PVMxxBnl3IYAG+9aGKWCu/311fPHnePJMwyxGeOhi63neSiSgM+iw==
+  dependencies:
+    p-debounce "*"
+
 "@types/rimraf@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-3.0.0.tgz#b9d03f090ece263671898d57bb7bb007023ac19f"
@@ -3198,6 +3205,11 @@ ovsx@^0.5.2:
     leven "^3.1.0"
     tmp "^0.2.1"
     vsce "^2.6.3"
+
+p-debounce@*, p-debounce@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/p-debounce/-/p-debounce-4.0.0.tgz#348e3f44489baa9435cc7d807f17b3bb2fb16b24"
+  integrity sha512-4Ispi9I9qYGO4lueiLDhe4q4iK5ERK8reLsuzH6BPaXn53EGaua8H66PXIFGrW897hwjXp+pVLrm/DLxN0RF0A==
 
 p-limit@^2.2.0:
   version "2.3.0"

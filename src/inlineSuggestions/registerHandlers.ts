@@ -61,7 +61,7 @@ export default async function registerInlineHandlers(
     (await isDefaultAPIEnabled())
   ) {
     const provideInlineCompletionItems = (
-      await import("../provideInlineCompletionItems")
+      await import("./provideInlineCompletionItems")
     ).default;
     const inlineCompletionsProvider = {
       provideInlineCompletionItems,

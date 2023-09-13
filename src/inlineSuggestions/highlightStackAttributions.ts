@@ -17,7 +17,7 @@ export default async function highlightStackAttributions(): Promise<void> {
   type Config = WorkspaceConfiguration & {
     attributionWindowSize: number;
   };
-  const config: Config = workspace.getConfiguration("HuggingFaceCode") as Config;
+  const config: Config = workspace.getConfiguration("CapcoCoCo") as Config;
   const { attributionWindowSize } = config;
 
   // get cursor postion and offset
@@ -66,7 +66,7 @@ export default async function highlightStackAttributions(): Promise<void> {
   ).then(clicked => {
     if (clicked) {
       // open stack search url in browser
-      void env.openExternal(Uri.parse("https://huggingface.co/spaces/bigcode/search"));
+      void env.openExternal(Uri.parse("https://coco.capcodevfx.com/api/bigcode/search"));
     }
   });
 
