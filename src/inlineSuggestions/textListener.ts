@@ -5,7 +5,7 @@ import {
   TextDocumentContentChangeEvent,
   TextLine,
 } from "vscode";
-import { debounce } from "debounce";
+import debounce from 'debounce';
 import {
   getCurrentSuggestion,
   setSuggestionsState,
